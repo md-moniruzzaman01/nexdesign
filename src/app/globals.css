@@ -24,3 +24,335 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+
+
+
+
+
+
+/* Container to give enough space for scrolling */
+.page-wrapper {
+  min-height: 800vh;
+  background-color: white;
+  overflow: hidden;
+}
+
+.other-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 2rem;
+}
+
+/* --- Core Animation Elements --- */
+
+.scroll-animation-container {
+  /* This height is crucial for the ScrollTrigger to work */
+  height: 100vh;
+  position: relative;
+}
+
+.pin-stage {
+  /* All circles are absolutely positioned and centered within this pinned stage */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide circles when they scale past bounds */
+}
+
+/* Base class for all circle layers */
+.circle-layer {
+  position: absolute;
+  border-radius: 50%;
+  transform-origin: center center;
+}
+
+/* 1. Initial Text Overlay */
+.animated-text {
+  position: absolute;
+  font-size: 6em; /* Adjust to fit screen */
+  font-weight: 300;
+  color: #3f4258;
+  text-align: center;
+  z-index: 10;
+  line-height: 1.1;
+}
+.animated-text .bold {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* 2. Outer Yellow Circle (section-3_first-yellow-circle) */
+.yellow-circle-1 {
+  background-color: #ffd700; /* Yellow */
+  /* Initial size is set by GSAP: 30em x 30em, y: 28em */
+  z-index: 5;
+}
+
+/* 3. White Circle (section-3-2nd-circle) */
+.white-circle-2 {
+  background-color: white;
+  /* Initial size is set by GSAP: 0em x 0em */
+  z-index: 6;
+}
+
+/* 4. Inner Yellow Dot (section-3-3rd-cirlce) */
+.yellow-circle-3 {
+  background-color: #ffd700; /* Yellow */
+  width: 10em; /* Base size for scale */
+  height: 10em;
+  z-index: 7;
+}
+
+/* 5. Gray Ring (section-3-4th-cirlce) */
+/* This circle acts as a container for all elements inside it */
+.gray-ring-4 {
+  background-color: #3f4258; /* Gray/Dark color */
+  width: 70em; /* Base size for scale */
+  height: 70em;
+  z-index: 8;
+  /* Inner content positioning */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 5a. Inner Yellow Circle (section-3-5th-cirlce) - The inner yellow ring */
+.inner-gray-ring-yellow {
+  /* This is the yellow circle inside the gray ring */
+  position: absolute;
+  width: 80%; /* Relative to gray-ring-4 */
+  height: 80%;
+  background-color: #ffd700;
+  transform: scale(0);
+}
+
+/* 6. Image Circle (section-3-6th-cirlce_image) - The final black circle with text */
+.image-circle-6 {
+  background-color: black;
+  width: 90%; /* Relative to inner-gray-ring-yellow */
+  height: 90%;
+  z-index: 10;
+  /* Initial scale is set by GSAP: 0 */
+  overflow: hidden;
+}
+.full-image-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5; /* Example: to make it look like a background */
+}
+
+/* 7. Final Text ("We create Epic") */
+.final-text-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+}
+.final-text-container div {
+  text-align: center;
+}
+.heading-small {
+  color: white;
+  font-size: 2.5em; /* Adjust font size */
+  line-height: 1;
+  font-weight: bold;
+}
+.text-color-yellow {
+  color: #ffd700; /* Yellow */
+}
+
+/* 8. Rotating Text (circular-text) */
+.rotating-text-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* We rotate the container and rely on the SVG path for the circular text appearance */
+  z-index: 9;
+}
+.circular-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ensure enough scroll space */
+/* .page-wrapper {
+    min-height: 400vh; 
+}
+.other-content {
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    background-color: #f0f0f0;
+    width: 100%;
+    color: #333;
+} */
+
+/* --- Pin Stage and Circle Layers --- */
+/* .pin-stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: white; 
+} */
+
+/* Base style for all positioned elements in the pin stage */
+/* .circle-layer {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    transition: none !important; 
+} */
+
+/* 1. Outer Yellow Circle */
+/* .outer-yellow-circle {
+    width: 100vw;
+    height: 100vw;
+    max-width: 1100px;
+    max-height: 1100px;
+    background-color: #FFD700; 
+} */
+
+/* 2. Dark Gray Ring (The prominent ring in Image 6) */
+.dark-ring {
+    width: 70vw; /* Size of the entire ring area */
+    height: 70vw;
+    max-width: 800px;
+    max-height: 800px;
+    background-color: transparent; /* Makes the center see-through */
+    border: 0 solid #4A4E69; /* Dark Gray color - width is set by GSAP */
+    opacity: 0; /* Starts hidden */
+}
+
+/* 3. Inner Black/Yellow Dot Circle */
+.inner-black-circle {
+    width: 50vw;
+    height: 50vw;
+    max-width: 500px;
+    max-height: 500px;
+    background-color: black; 
+    overflow: visible; 
+    opacity: 0;
+}
+
+/* --- Character & Final Text --- */
+.character-scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.1); /* Starts small */
+    opacity: 0; /* Starts hidden */
+    text-align: center;
+}
+
+.character-placeholder {
+    width: 80%; 
+    height: 80%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* You may need to adjust the position of the character relative to the text */
+}
+
+.epic-text {
+    position: absolute;
+    font-size: 2em;
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    z-index: 5;
+    /* Adjust position to be centered on the black circle */
+}
+
+/* --- Rotating Text (Image 9) --- */
+.rotating-text-container {
+    width: 130%; /* Set size larger than the black circle to position the text outside */
+    height: 130%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Rotation is handled by GSAP */
+}
+
+.circle-text {
+    position: absolute;
+    color: #FFD700; /* Yellow color to contrast with black */
+    font-size: 1.2em;
+    font-weight: bold;
+    top: -10px; /* Position slightly above the center of the black circle */
+    width: 100%;
+    text-align: center;
+    letter-spacing: 5px;
+    white-space: nowrap;
+}
+
+/* --- Main Text Overlay (WE DON'T JUST BUILD WEBSITES) --- */
+.animated-text {
+    z-index: 10;
+    font-size: 5em;
+    font-weight: 800;
+    color: #333; /* Dark gray for the initial state */
+    text-align: center;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.1;
+    user-select: none;
+}
