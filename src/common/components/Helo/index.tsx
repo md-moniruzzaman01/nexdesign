@@ -89,7 +89,7 @@ const FinalScrollAnimation = () => {
         height: "18.1005em",
         duration: 0.5,
       },
-      1.0
+      0.8
     );
 
     // Time 1.5: White Circle 2 continues to expand
@@ -102,31 +102,31 @@ const FinalScrollAnimation = () => {
     //   },
     //   1.5
     // );
-    tl.to(
-      [yellowCircle1Ref.current, whiteCircleRef.current],
-      {
-        width: "225em",
-        height: "225em",
-        duration: 2.5,
-        ease: "power2.inOut",
-      },
-      ">-0.5"
-    );
+    // tl.to(
+    //   [yellowCircle1Ref.current, whiteCircleRef.current],
+    //   {
+    //     width: "225em",
+    //     height: "225em",
+    //     duration: 2.5,
+    //     ease: "power2.inOut",
+    //   },
+    //   ">-0.5"
+    // );
     // Time 1.5: Yellow Circle 1 and White Circle 2 expand to final huge size
     tl.to(
       [yellowCircle1Ref.current, whiteCircleRef.current],
       {
-        width: "150em",
-        height: "150em",
-        duration: 2.5,
+        width: "200em",
+        height: "200em",
+        duration: 1,
       },
-      2.0
+
     );
 
     // Time 1.7: Yellow Circle 3 (small dot) scales in
     tl.to(
       yellowCircle2Ref.current,
-      { scale: 0.38565, duration: 0.5, ease: "power2.out" },
+      { scale: 7.5, duration: 0.5, ease: "power2.out" },
       1.7
     );
 
@@ -135,7 +135,7 @@ const FinalScrollAnimation = () => {
         ------------------------------------------- */
 
     // Time 2.5: Gray Ring 4 scales in (around the yellow dot)
-    tl.to(grayRingRef.current, { scale: 0.54885, duration: 1.0 }, 2.5);
+    tl.to(grayRingRef.current, { scale: 0.74885, duration: 1.0 }, 2.5);
 
     // Time 2.5: Inner Yellow Circle (section-3-5th-cirlce, inside the gray ring) scales in
     // This element is placed inside the grayRingRef in the JSX
